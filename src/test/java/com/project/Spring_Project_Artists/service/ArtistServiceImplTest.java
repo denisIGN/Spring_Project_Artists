@@ -23,14 +23,14 @@ public class ArtistServiceImplTest {
 
     @Mock
     private ArtistRepository artistRepository;
-    @Mock
-    private ModelMapper modelMapper;
 
+    private ModelMapper modelMapper;
     private ArtistServiceImpl artistServiceImpl;
 
 
     @BeforeEach
     public void setUp(){
+        modelMapper = new ModelMapper();
         artistServiceImpl = new ArtistServiceImpl(artistRepository, modelMapper);
     }
 
