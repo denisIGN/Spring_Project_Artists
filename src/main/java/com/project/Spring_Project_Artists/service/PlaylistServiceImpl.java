@@ -6,6 +6,7 @@ import com.project.Spring_Project_Artists.exception.DuplicateResourceException;
 import com.project.Spring_Project_Artists.exception.ResourceNotFoundException;
 import com.project.Spring_Project_Artists.model.Playlist;
 import com.project.Spring_Project_Artists.repository.PlaylistRepository;
+import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,14 +36,14 @@ public class PlaylistServiceImpl implements PlaylistService{
     }
 
     @Override
-    public PlaylistDto findByName(String name){
+    public PlaylistDto findByName(@NonNull String name){
         Playlist maybePlaylist = playlistRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Cannot find playlist with name: " + name));
         return modelMapper.map(maybePlaylist, PlaylistDto.class);
     }
 
     @Override
-    public PlaylistDto save(PlaylistDto playlistDto){
+    public PlaylistDto save(@NonNull PlaylistDto playlistDto){
 
         try {
             Playlist playlist = modelMapper.map(playlistDto, Playlist.class);
@@ -54,7 +55,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     }
 
     @Override
-    public PlaylistDto update(PlaylistDto playlistDto){
+    public PlaylistDto update(@NonNull PlaylistDto playlistDto){
 
         try {
             Playlist playlist = modelMapper.map(playlistDto, Playlist.class);
@@ -66,7 +67,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     }
 
     @Override
-    public void deleteByName(String name) {
+    public void deleteByName(@NonNull String name) {
 
         try {
             playlistRepository.deleteByName(name);

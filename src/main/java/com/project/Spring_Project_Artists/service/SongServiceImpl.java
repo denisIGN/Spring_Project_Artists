@@ -8,6 +8,7 @@ import com.project.Spring_Project_Artists.model.Artist;
 import com.project.Spring_Project_Artists.model.Playlist;
 import com.project.Spring_Project_Artists.model.Song;
 import com.project.Spring_Project_Artists.repository.SongRepository;
+import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,28 +45,28 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto findById(Long id) {
+    public SongDto findById(@NonNull Long id) {
         Song maybeSong = songRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with ID: " + id));
         return modelMapper.map(maybeSong, SongDto.class);
     }
 
     @Override
-    public SongDto findByName(String name) {
+    public SongDto findByName(@NonNull String name) {
         Song maybeSong = songRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with name: " + name));
         return modelMapper.map(maybeSong, SongDto.class);
     }
 
     @Override
-    public SongDto findByAlbumName(String albumName) {
+    public SongDto findByAlbumName(@NonNull String albumName) {
         Song maybeSong = songRepository.findByAlbumName(albumName)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with album name: " + albumName));
         return modelMapper.map(maybeSong, SongDto.class);
     }
 
     @Override
-    public SongDto save(SongDto songDto) {
+    public SongDto save(@NonNull SongDto songDto) {
 
         try {
             Song song = modelMapper.map(songDto, Song.class);
@@ -86,7 +87,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto update(SongDto songDto) {
+    public SongDto update(@NonNull SongDto songDto) {
 
         try {
             Song song = modelMapper.map(songDto, Song.class);
@@ -98,7 +99,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(@NonNull Long id) {
         try {
             songRepository.deleteById(id);
         }catch (DataIntegrityViolationException ex){

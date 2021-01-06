@@ -6,6 +6,7 @@ import com.project.Spring_Project_Artists.exception.DuplicateResourceException;
 import com.project.Spring_Project_Artists.exception.ResourceNotFoundException;
 import com.project.Spring_Project_Artists.model.Artist;
 import com.project.Spring_Project_Artists.repository.ArtistRepository;
+import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -36,28 +37,28 @@ public class ArtistServiceImpl implements ArtistService{
     }
 
     @Override
-    public ArtistDto findById(Long id){
+    public ArtistDto findById(@NonNull Long id){
         Artist maybeArtist = artistRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist with ID: " + id));
         return modelMapper.map(maybeArtist, ArtistDto.class);
     }
 
     @Override
-    public ArtistDto findByName(String name){
+    public ArtistDto findByName(@NonNull String name){
         Artist maybeArtist = artistRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist with name: " + name));
         return modelMapper.map(maybeArtist, ArtistDto.class);
     }
 
     @Override
-    public ArtistDto findByLabelName(String labelName){
+    public ArtistDto findByLabelName(@NonNull String labelName){
         Artist maybeArtist = artistRepository.findByLabelName(labelName)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist under the label name: " + labelName));
         return modelMapper.map(maybeArtist, ArtistDto.class);
     }
 
     @Override
-    public ArtistDto save(ArtistDto artistDto){
+    public ArtistDto save(@NonNull ArtistDto artistDto){
 
         try {
             artistDto.setId(null);
@@ -70,7 +71,7 @@ public class ArtistServiceImpl implements ArtistService{
     }
 
     @Override
-    public ArtistDto update(ArtistDto artistDto){
+    public ArtistDto update(@NonNull ArtistDto artistDto){
 
         try {
             Artist artist = modelMapper.map(artistDto, Artist.class);
@@ -82,7 +83,7 @@ public class ArtistServiceImpl implements ArtistService{
     }
 
     @Override
-    public void deleteById(Long id){
+    public void deleteById(@NonNull Long id){
 
         try {
             artistRepository.deleteById(id);
