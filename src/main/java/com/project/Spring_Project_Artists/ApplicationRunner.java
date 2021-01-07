@@ -30,7 +30,7 @@ public class ApplicationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //testing object creation and insertion
+
         PlaylistDto myPlaylist = new PlaylistDto();
         myPlaylist.setName("Test Playlist");
         playlistService.save(myPlaylist);
@@ -68,8 +68,6 @@ public class ApplicationRunner implements CommandLineRunner {
         testSong2.setArtistDto(testArtist2);
         testSong2.setPlaylistDto(myPlaylist2);
         songService.save(testSong2);
-
-
 
     }
 }

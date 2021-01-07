@@ -65,7 +65,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto save(@NonNull SongDto songDto) {
+    public SongDto save(SongDto songDto) {
 
         try {
             songDto.setId(null);
