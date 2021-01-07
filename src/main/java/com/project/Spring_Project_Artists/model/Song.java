@@ -28,16 +28,16 @@ public class Song {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "artist_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
     private Artist artist;
 
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "playlist_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
     private Playlist playlist;
 
 }

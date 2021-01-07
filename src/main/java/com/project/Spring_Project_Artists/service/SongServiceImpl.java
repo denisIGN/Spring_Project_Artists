@@ -65,7 +65,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto save(SongDto songDto) {
+    public SongDto save(@NonNull SongDto songDto) {
 
         try {
             songDto.setId(null);
@@ -86,7 +86,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto update(SongDto songDto) {
+    public SongDto update(@NonNull SongDto songDto) {
 
         try {
             Song song = modelMapper.map(songDto, Song.class);

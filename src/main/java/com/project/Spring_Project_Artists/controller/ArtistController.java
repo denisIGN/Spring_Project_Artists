@@ -40,12 +40,12 @@ public class ArtistController {
         return ResponseEntity.ok(artistService.findByLabelName(labelName));
     }
 
-    @PostMapping(value = "/save/{artistDto}")
+    @PostMapping(value = "/save/")
     public ResponseEntity<ArtistDto> save(@RequestBody ArtistDto artistDto){
         return ResponseEntity.ok(artistService.save(artistDto));
     }
 
-    @PutMapping(value = "/update/{artistDto}")
+    @PutMapping(value = "/update/")
     public ResponseEntity<ArtistDto> update(@RequestBody ArtistDto artistDto){
         return ResponseEntity.ok(artistService.update(artistDto));
     }

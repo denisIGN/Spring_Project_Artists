@@ -30,12 +30,12 @@ public class PlaylistController {
         return ResponseEntity.ok(playlistService.findByName(name));
     }
 
-    @PostMapping(value = "/save/{playlistDto}")
+    @PostMapping(value = "/save/")
     public ResponseEntity<PlaylistDto> save(@RequestBody PlaylistDto playlistDto){
         return ResponseEntity.ok(playlistService.save(playlistDto));
     }
 
-    @PutMapping(value = "/update/{playlistDto}")
+    @PutMapping(value = "/update/")
     public ResponseEntity<PlaylistDto> update(@RequestBody PlaylistDto playlistDto){
         return ResponseEntity.ok(playlistService.update(playlistDto));
     }
