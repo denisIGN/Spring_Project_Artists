@@ -36,22 +36,22 @@ public class SongController {
     }
 
 
-    @GetMapping(value = "/album/{findByAlbumName}")
+    @GetMapping(value = "/album/{albumName}")
     public ResponseEntity<SongDto> findByAlbumName(@PathVariable @Valid String albumName){
         return ResponseEntity.ok(songService.findByAlbumName(albumName));
     }
 
-    @PostMapping(value = "/save/{songDto}")
+    @PostMapping(value = "/save/")
     public ResponseEntity<SongDto> save(@RequestBody SongDto songDto){
         return ResponseEntity.ok(songService.save(songDto));
     }
 
-    @PutMapping(value = "/update/{songDto}")
+    @PutMapping(value = "/update/")
     public ResponseEntity<SongDto> update(@RequestBody SongDto songDto){
         return ResponseEntity.ok(songService.update(songDto));
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "/{id}")
     public void deleteById(@PathVariable Long id){
         songService.deleteById(id);
     }

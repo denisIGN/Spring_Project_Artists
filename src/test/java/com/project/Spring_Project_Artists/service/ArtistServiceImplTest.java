@@ -54,6 +54,8 @@ public class ArtistServiceImplTest {
         assertEquals(actualArtistDto.getLabelName(), "Test label name");
     }
 
+
+
     @Test
     public void duplicateThrowsExSuccess(){
 

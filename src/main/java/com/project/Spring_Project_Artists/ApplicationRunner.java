@@ -35,12 +35,23 @@ public class ApplicationRunner implements CommandLineRunner {
         myPlaylist.setName("Test Playlist");
         playlistService.save(myPlaylist);
 
+        PlaylistDto myPlaylist2 = new PlaylistDto();
+        myPlaylist2.setName("Test Playlist 2");
+        playlistService.save(myPlaylist2);
+
         ArtistDto testArtist = new ArtistDto();
         testArtist.setName("Test Artist");
         testArtist.setAboutInfo("Test information");
         testArtist.setGenreType(GenreType.POP);
         testArtist.setLabelName("Test Label");
         artistService.save(testArtist);
+
+        ArtistDto testArtist2 = new ArtistDto();
+        testArtist2.setName("Test Artist 2");
+        testArtist2.setAboutInfo("Test information 2");
+        testArtist2.setGenreType(GenreType.POP);
+        testArtist2.setLabelName("Test Label 2");
+        artistService.save(testArtist2);
 
         SongDto testSong = new SongDto();
         testSong.setName("Test Name");
@@ -49,6 +60,15 @@ public class ApplicationRunner implements CommandLineRunner {
         testSong.setArtistDto(testArtist);
         testSong.setPlaylistDto(myPlaylist);
         songService.save(testSong);
+
+        SongDto testSong2 = new SongDto();
+        testSong2.setName("Test Name 2");
+        testSong2.setAlbumName("Test Album 2");
+        testSong2.setYearPublished(2002);
+        testSong2.setArtistDto(testArtist2);
+        testSong2.setPlaylistDto(myPlaylist2);
+        songService.save(testSong2);
+
 
 
     }

@@ -10,7 +10,6 @@ import com.project.Spring_Project_Artists.model.Song;
 import com.project.Spring_Project_Artists.repository.SongRepository;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -69,13 +68,13 @@ public class SongServiceImpl implements SongService{
     public SongDto save(@NonNull SongDto songDto) {
 
         try {
+            songDto.setId(null);
             Song song = modelMapper.map(songDto, Song.class);
-            //set the artist of the song
             String artistName = songDto.getArtistDto().getName();
+
             Artist artist = modelMapper.map(artistService.findByName(artistName), Artist.class);
             song.setArtist(artist);
 
-            //set in which playlist it resides
             String playlistName = songDto.getPlaylistDto().getName();
             Playlist playlist = modelMapper.map(playlistService.findByName(playlistName), Playlist.class);
             song.setPlaylist(playlist);
@@ -87,7 +86,7 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public SongDto update(@NonNull SongDto songDto) {
+    public SongDto update(SongDto songDto) {
 
         try {
             Song song = modelMapper.map(songDto, Song.class);
