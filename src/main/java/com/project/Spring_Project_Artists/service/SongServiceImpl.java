@@ -70,8 +70,13 @@ public class SongServiceImpl implements SongService{
         try {
             songDto.setId(null);
             Song song = modelMapper.map(songDto, Song.class);
-            String artistName = songDto.getArtistDto().getName();
+            if(song.getArtist() == null){
 
+                songRepository.save(song);
+                return modelMapper.map(song, SongDto.class);
+
+            }
+            String artistName = songDto.getArtistDto().getName();
             Artist artist = modelMapper.map(artistService.findByName(artistName), Artist.class);
             song.setArtist(artist);
 

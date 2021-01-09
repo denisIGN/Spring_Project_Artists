@@ -32,7 +32,6 @@ public class Song {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
