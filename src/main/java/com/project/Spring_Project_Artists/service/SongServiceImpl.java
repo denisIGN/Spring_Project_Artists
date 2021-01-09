@@ -83,6 +83,7 @@ public class SongServiceImpl implements SongService{
             String playlistName = songDto.getPlaylistDto().getName();
             Playlist playlist = modelMapper.map(playlistService.findByName(playlistName), Playlist.class);
             song.setPlaylist(playlist);
+
             songRepository.save(song);
             return modelMapper.map(song, SongDto.class);
         }catch (DataIntegrityViolationException ex){
