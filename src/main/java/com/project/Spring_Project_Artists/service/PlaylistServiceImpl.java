@@ -30,6 +30,7 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public Set<PlaylistDto> findAll(){
+
         return playlistRepository.findAll()
                 .stream().map(playlist -> modelMapper.map(playlist, PlaylistDto.class))
                 .collect(Collectors.toSet());
@@ -37,6 +38,7 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public PlaylistDto findByName(@NonNull String name){
+
         Playlist maybePlaylist = playlistRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Cannot find playlist with name: " + name));
         return modelMapper.map(maybePlaylist, PlaylistDto.class);

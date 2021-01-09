@@ -31,6 +31,7 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public Set<ArtistDto> findAll(){
+
         return artistRepository.findAll()
                 .stream().map(artist -> modelMapper.map(artist, ArtistDto.class))
                 .collect(Collectors.toSet());
@@ -38,6 +39,7 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public ArtistDto findById(@NonNull Long id){
+
         Artist maybeArtist = artistRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist with ID: " + id));
         return modelMapper.map(maybeArtist, ArtistDto.class);
@@ -45,6 +47,7 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public ArtistDto findByName(@NonNull String name){
+
         Artist maybeArtist = artistRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist with name: " + name));
         return modelMapper.map(maybeArtist, ArtistDto.class);
@@ -52,6 +55,7 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public ArtistDto findByLabelName(@NonNull String labelName){
+
         Artist maybeArtist = artistRepository.findByLabelName(labelName)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find artist under the label name: " + labelName));
         return modelMapper.map(maybeArtist, ArtistDto.class);

@@ -45,6 +45,7 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public SongDto findById(@NonNull Long id) {
+
         Song maybeSong = songRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with ID: " + id));
         return modelMapper.map(maybeSong, SongDto.class);
@@ -52,6 +53,7 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public SongDto findByName(@NonNull String name) {
+
         Song maybeSong = songRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with name: " + name));
         return modelMapper.map(maybeSong, SongDto.class);
@@ -59,6 +61,7 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public SongDto findByAlbumName(@NonNull String albumName) {
+
         Song maybeSong = songRepository.findByAlbumName(albumName)
                 .orElseThrow(() -> new ResourceNotFoundException("Can't find song with album name: " + albumName));
         return modelMapper.map(maybeSong, SongDto.class);
@@ -86,6 +89,7 @@ public class SongServiceImpl implements SongService{
 
             songRepository.save(song);
             return modelMapper.map(song, SongDto.class);
+
         }catch (DataIntegrityViolationException ex){
           throw new DuplicateResourceException("Can't save this object due to incomplete data.");
         }
