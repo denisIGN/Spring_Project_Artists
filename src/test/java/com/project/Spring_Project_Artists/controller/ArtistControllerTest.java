@@ -2,7 +2,6 @@ package com.project.Spring_Project_Artists.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.Spring_Project_Artists.dto.ArtistDto;
-import com.project.Spring_Project_Artists.service.ArtistService;
 import com.project.Spring_Project_Artists.service.ArtistServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
