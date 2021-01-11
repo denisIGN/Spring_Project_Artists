@@ -11,9 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -62,4 +62,13 @@ class ArtistControllerTest {
                 .andExpect(jsonPath("$.name", is("Test Name")));
 
     }
+
+    @Test
+    void deleteByIdSuccess() throws Exception{
+
+        mvc.perform(delete("/artists/1"))
+                .andExpect(status().isOk());
+
+    }
+
 }
