@@ -64,6 +64,24 @@ class ArtistControllerTest {
     }
 
     @Test
+    void updateSuccess() throws Exception{
+
+        ArtistDto artistDto = new ArtistDto();
+        artistDto.setName("Test Name");
+
+        String artistToJson = objectMapper.writeValueAsString(artistDto);
+
+        when(artistService.update(artistDto))
+                .thenReturn(artistDto);
+
+        mvc.perform(put("/artists/update/")
+                .content(artistToJson)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
     void deleteByIdSuccess() throws Exception{
 
         mvc.perform(delete("/artists/1"))
