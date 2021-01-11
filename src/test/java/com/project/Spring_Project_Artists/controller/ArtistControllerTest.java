@@ -3,6 +3,7 @@ package com.project.Spring_Project_Artists.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.Spring_Project_Artists.dto.ArtistDto;
 import com.project.Spring_Project_Artists.service.ArtistService;
+import com.project.Spring_Project_Artists.service.ArtistServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -11,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ArtistControllerTest {
 
     @MockBean
-    private ArtistService artistService;
+    private ArtistServiceImpl artistServiceImpl;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -35,7 +35,7 @@ class ArtistControllerTest {
         artistDto.setId(1L);
         artistDto.setName("Test Name");
 
-        when(artistService.findById(1L))
+        when(artistServiceImpl.findById(1L))
                 .thenReturn(artistDto);
         mvc.perform(get("/artists/1"))
                 .andExpect(status().isOk())
@@ -51,7 +51,7 @@ class ArtistControllerTest {
 
         String artistToJson = objectMapper.writeValueAsString(artistDto);
 
-        when(artistService.save(artistDto))
+        when(artistServiceImpl.save(artistDto))
                 .thenReturn(artistDto);
 
         mvc.perform(post("/artists/save/")
@@ -71,7 +71,7 @@ class ArtistControllerTest {
 
         String artistToJson = objectMapper.writeValueAsString(artistDto);
 
-        when(artistService.update(artistDto))
+        when(artistServiceImpl.update(artistDto))
                 .thenReturn(artistDto);
 
         mvc.perform(put("/artists/update/")
