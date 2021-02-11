@@ -8,7 +8,7 @@ Project made using
 - Maven
 - JPA/Hibernate
 - MySQL 
-
+- JUnit 5 with Mockito for unit testing
 
 A small Spring project using CRUD operations.  
 
